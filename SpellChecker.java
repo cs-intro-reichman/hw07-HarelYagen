@@ -27,7 +27,7 @@ public class SpellChecker {
 		}
 
 		else if (word1.length() < word2.length()) {
-			return levenshtein(word1, word2.substring(0, word1.length() + 1)) + (word2.length() - word1.length());
+			return levenshtein(word1, word2.substring(0, word1.length())) + (word2.length() - word1.length());
 		}
 
 		else if (word1.isEmpty()) {
