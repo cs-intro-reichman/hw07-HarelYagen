@@ -3,7 +3,7 @@ public class SpellChecker {
 		String word1 = args[0];
 		int threshold = Integer.parseInt(args[1]);
 		String[] dictionary = readDictionary("dictionary.txt");
-		String correction = spellChecker(word, threshold, dictionary);
+		String correction = spellChecker(word1, threshold, dictionary);
 		System.out.println(correction);
 	}
 
