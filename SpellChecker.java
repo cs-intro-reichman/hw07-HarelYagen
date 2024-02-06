@@ -35,7 +35,7 @@ public class SpellChecker {
 		}
 
 		else {
-			if (head(word1).equals(head(word2))) {
+			if (head(word1.toLowerCase()).equals(head(word2.toLowerCase()))) {
 				return levenshtein(tail(word1), tail(word2)); 
 			}
 			return levenshtein(tail(word1), tail(word2)) + 1;
