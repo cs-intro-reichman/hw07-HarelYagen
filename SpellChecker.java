@@ -22,34 +22,26 @@ public class SpellChecker {
 	}
 
 	public static int levenshtein(String word1, String word2) {
-		if(word1.length() == 0){
-			return word2.length();
+		if (word1.length() > word2.length()) {
+			return levenshtein(word1.substring(0, word2.length()), word2) + (word1.length() - word2.length());
 		}
 
-		else if(word2.length() == 0){
-			return word1.length();
-		}
-		else if(head(word1) == head(word2)){
-            levenshtein(tail(word1), tail(word2));
+		else if (word1.length() < word2.length()) {
+			return levenshtein(word1, word2.substring(0, word1.length())) + (word2.length() - word1.length());
 		}
 
-		int adition = levenshtein(tail(word1), word2);
-		int deleretion = levenshtein(word1, tail(word2));
-		int subsitution = levenshtein(tail(word1), tail(word2));
-		int min = 3;
+		else if (word1.isEmpty()) {
+			return 0;
+		}
 
-		int [] bestway = {adition,deleretion,subsitution};
-		for(int i = 0; i < 3; i++){
-			int temp = bestway[i];
-			int shortway = 15;  
-			shortway = Math.min((bestway[i]), shortway);
-			if(shortway < temp ){
-			    min = i;
+		else {
+			if (head(word1.toLowerCase()).equals(head(word2.toLowerCase()))) {
+				return levenshtein(tail(word1), tail(word2)); 
 			}
+			return levenshtein(tail(word1), tail(word2)) + 1;
 		}
-		return 1 + bestway[min];
-		}
-		
+	}
+
 	public static String[] readDictionary(String fileName) {
 		String[] dictionary = new String[3000];
 		In file = new In(fileName);
